@@ -16,7 +16,7 @@ export default function BookChapterListComponent(props: IProps) {
   return (
     <section
       className={cn(
-        "h-fit grid grid-cols-6 gap-2 overflow-y-auto max-h-72",
+        "h-fit grid grid-cols-8 gap-2 overflow-y-auto max-h-72",
         className
       )}
     >

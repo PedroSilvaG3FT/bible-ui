@@ -1,4 +1,5 @@
 import bibleStore from "@/store/bible.store";
+import loadingStore from "@/store/loading.store";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { IndexedDBService } from "@/modules/@shared/services/index-db.service";
 import { BIBLE_VERSIONS } from "@/modules/@shared/constants/bible-version.contant";
@@ -35,6 +36,7 @@ const BibleProvider: React.FC<IBibleProviderProps> = ({ children }) => {
   const [newTestamentData, setNewTestamentData] = useState<IBibleItem[]>([]);
 
   const _bibleStore = bibleStore((state) => state);
+  const _loadingStore = loadingStore((state) => state);
 
   const selectVersion = (version: IBibleVersionItem) => {
     _bibleStore.setVersion(version);
@@ -47,13 +49,19 @@ const BibleProvider: React.FC<IBibleProviderProps> = ({ children }) => {
 
     if (cachedData) setData([...cachedData]);
     else {
+      _loadingStore.setShow(true);
+
       fetch(_bibleStore.version.path)
         .then((res) => res.json())
         .then(async (data) => {
           setData(data);
           await dbService.saveData(_bibleStore.version.type, data);
+          _loadingStore.setShow(false);
         })
-        .catch((err) => console.error("Erro ao buscar JSON:", err));
+        .catch((err) => {
+          console.error("Erro ao buscar JSON:", err);
+          _loadingStore.setShow(false);
+        });
     }
   };
 

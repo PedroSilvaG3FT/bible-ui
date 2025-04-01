@@ -131,7 +131,9 @@ export default function BookSearchComponent(props: IProps) {
         onChange={handleChange}
         onFocus={() => setOpen(true)}
         placeholder="Buscar um livro..."
-        rightSlot={<CommandShortcut>⌘ + K</CommandShortcut>}
+        rightSlot={
+          <CommandShortcut className="mobile:hidden">⌘ + K</CommandShortcut>
+        }
         className={cn(
           "h-12 relative z-20 rounded-sm cursor-pointer !bg-transparent",
           props.inputClassName

@@ -6,6 +6,7 @@ import {
 } from "@/design/components/ui/tabs";
 import BookOptionsComponent from "./book-options.component";
 import { IBibleItem } from "@/modules/@shared/interfaces/bible.interface";
+import Chat from "@/modules/@shared/components/chat/chat";
 
 interface IProps {
   book: IBibleItem;
@@ -13,7 +14,7 @@ interface IProps {
 }
 export default function BookExtensions(props: IProps) {
   return (
-    <Tabs defaultValue="options" className="w-full py-4">
+    <Tabs defaultValue="options" className="w-full h-full pt-4">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="options">Opções</TabsTrigger>
         <TabsTrigger value="chat">Chat</TabsTrigger>
@@ -23,7 +24,9 @@ export default function BookExtensions(props: IProps) {
         <BookOptionsComponent {...props} />
       </TabsContent>
 
-      <TabsContent value="chat">chat</TabsContent>
+      <TabsContent value="chat" className="h-[calc(100%-64px)] pt-6">
+        <Chat />
+      </TabsContent>
     </Tabs>
   );
 }
