@@ -1,0 +1,11 @@
+.Toastify__toast-container {
+  @apply z-[9999999999999];
+}
+
+.Toastify__toast {
+  @apply bg-secondary text-foreground #{!important};
+
+  .Toastify__close-button {
+    @apply text-foreground #{!important};
+  }
+}

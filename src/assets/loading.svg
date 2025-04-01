@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle
+    r="0"
+    cx="100"
+    cy="100"
+    fill="none"
+    stroke="#F98037"
+    stroke-width=".5"
+    stroke-opacity="1"
+  >
+    <animate
+      dur="2"
+      values="1;80"
+      keyTimes="0;1"
+      attributeName="r"
+      calcMode="spline"
+      keySplines="0 .2 .5 1"
+      repeatCount="indefinite"
+    ></animate>
+    <animate
+      dur="2"
+      values="0;25"
+      keyTimes="0;1"
+      calcMode="spline"
+      keySplines="0 .2 .5 1"
+      repeatCount="indefinite"
+      attributeName="stroke-width"
+    ></animate>
+    <animate
+      dur="2"
+      values="1;0"
+      keyTimes="0;1"
+      calcMode="spline"
+      keySplines="0 .2 .5 1"
+      repeatCount="indefinite"
+      attributeName="stroke-opacity"
+    ></animate>
+  </circle>
+</svg>

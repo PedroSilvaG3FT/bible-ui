@@ -1,0 +1,12 @@
+.app-container {
+  @apply mx-auto px-12 mobile:px-4;
+  max-width: 1440px;
+}
+
+.app-container-pt {
+  @apply pt-24;
+}
+
+.app-max-content {
+  @apply mobile:max-w-[calc(100vw-32px)];
+}
