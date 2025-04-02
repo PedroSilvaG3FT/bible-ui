@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IBibleItem } from "@/modules/@shared/interfaces/bible.interface";
 import BookSummaryModalComponent from "./book-summary-modal.component";
+import { cn } from "@/design/lib/utils";
 
 interface IProps {
   data: IBibleItem;
@@ -27,6 +28,15 @@ export default function BookCardComponent(props: IProps) {
           />
           <div className="absolute inset-0 bg-black opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
         </figure>
+
+        <h2
+          className={cn(
+            "absolute top-3 -left-full group-hover:left-3 text-8xl capitalize font-semibold transition-all duration-500",
+            "opacity-40 bg-gradient-to-b from-foreground to-transparent text-transparent bg-clip-text"
+          )}
+        >
+          {data.abbrev}
+        </h2>
 
         <footer className="absolute bottom-0 left-0 z-10 w-full h-full p-4 flex items-end justify-between">
           <section></section>
