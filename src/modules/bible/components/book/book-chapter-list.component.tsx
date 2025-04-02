@@ -26,7 +26,7 @@ export default function BookChapterListComponent(props: IProps) {
           const chapterNumber = index + 1;
           return (
             <Button
-              className="w-10"
+              className="w-10 focus-visible:ring-0 focus-visible:ring-offset-0"
               variant={chapter === chapterNumber ? "secondary" : "ghost"}
               onClick={() => navigate(`/${book.abbrev}/${chapterNumber}`)}
             >
