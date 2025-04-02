@@ -1,26 +1,38 @@
 import { cn } from "@/design/lib/utils";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useBible } from "@/contexts/bible.context";
 
 interface IProps {
+  book: string;
   number: number;
+  chapter: number;
   content: string;
   onClick?: () => void;
 }
 export default function BookVersicleComponent(props: IProps) {
-  const { number, content, onClick } = props;
+  const { number, content, book, chapter, onClick } = props;
 
   const location = useLocation();
   const [selected, setSelected] = useState(false);
+  const { handleSaveVersicle, savedVersicles } = useBible();
 
   const handleClick = () => {
     setSelected(!selected);
     onClick?.();
+    handleSaveVersicle({ book, chapter, number });
+  };
+
+  const initSavedVersicle = () => {
+    const hasVersicle = savedVersicles.some(
+      (i) => i.book === book && i.chapter === chapter && i.number === number
+    );
+    setSelected(hasVersicle);
   };
 
   useEffect(() => {
-    setSelected(false);
-  }, [location]);
+    initSavedVersicle();
+  }, [location, savedVersicles]);
 
   return (
     <p

@@ -50,6 +50,18 @@ export class IndexedDBService {
     });
   }
 
+  async getAllData<T>(): Promise<T[]> {
+    const db = await this.initDB();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(this.storeName, "readonly");
+      const store = tx.objectStore(this.storeName);
+      const request = store.getAll();
+
+      request.onsuccess = () => resolve(request.result as T[]);
+      request.onerror = () => reject(request.error);
+    });
+  }
+
   async deleteData(key: string): Promise<void> {
     const db = await this.initDB();
     return new Promise((resolve, reject) => {

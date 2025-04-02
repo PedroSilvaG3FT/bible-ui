@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useBible } from "@/contexts/bible.context";
 import { Button } from "@/design/components/ui/button";
 import { useNavigate, useParams } from "react-router-dom";
@@ -32,6 +32,11 @@ export default function BibleBookPage() {
 
   useEffect(() => {
     setBookData();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   }, [data, params]);
 
   return (
@@ -72,7 +77,12 @@ export default function BibleBookPage() {
         <Each
           data={chapter}
           render={(item, index) => (
-            <BookVersicleComponent content={item} number={index + 1} />
+            <BookVersicleComponent
+              content={item}
+              book={book.abbrev}
+              number={index + 1}
+              chapter={Number(params.chapter)}
+            />
           )}
         />
       </article>

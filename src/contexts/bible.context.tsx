@@ -6,6 +6,7 @@ import { BIBLE_VERSIONS } from "@/modules/@shared/constants/bible-version.contan
 import {
   IBibleItem,
   IBibleVersionItem,
+  IVersicleSaveItem,
 } from "@/modules/@shared/interfaces/bible.interface";
 
 interface IBibleContext {
@@ -13,19 +14,23 @@ interface IBibleContext {
   versions: IBibleVersionItem[];
   oldTestamentData: IBibleItem[];
   newTestamentData: IBibleItem[];
+  savedVersicles: IVersicleSaveItem[];
 
-  selectVersion: (version: IBibleVersionItem) => void;
+  selectVersion: (data: IBibleVersionItem) => void;
+  handleSaveVersicle: (data: IVersicleSaveItem) => void;
 }
 
 const BibleContext = createContext<IBibleContext>({
   data: [],
   versions: [],
+  savedVersicles: [],
   oldTestamentData: [],
   newTestamentData: [],
   selectVersion: () => {},
+  handleSaveVersicle: () => {},
 });
 
-const dbService = new IndexedDBService("@App", "Bible");
+const _dbBible = new IndexedDBService("@App", "Bible");
 
 interface IBibleProviderProps {
   children: React.ReactNode;
@@ -34,6 +39,7 @@ const BibleProvider: React.FC<IBibleProviderProps> = ({ children }) => {
   const [data, setData] = useState<IBibleItem[]>([]);
   const [oldTestamentData, setOldTestamentData] = useState<IBibleItem[]>([]);
   const [newTestamentData, setNewTestamentData] = useState<IBibleItem[]>([]);
+  const [savedVersicles, setSavedVersicles] = useState<IVersicleSaveItem[]>([]);
 
   const _bibleStore = bibleStore((state) => state);
   const _loadingStore = loadingStore((state) => state);
@@ -43,7 +49,7 @@ const BibleProvider: React.FC<IBibleProviderProps> = ({ children }) => {
   };
 
   const getVersionData = async () => {
-    const cachedData = await dbService.getData<IBibleItem[]>(
+    const cachedData = await _dbBible.getData<IBibleItem[]>(
       _bibleStore.version.type
     );
 
@@ -55,7 +61,7 @@ const BibleProvider: React.FC<IBibleProviderProps> = ({ children }) => {
         .then((res) => res.json())
         .then(async (data) => {
           setData(data);
-          await dbService.saveData(_bibleStore.version.type, data);
+          await _dbBible.saveData(_bibleStore.version.type, data);
           _loadingStore.setShow(false);
         })
         .catch((err) => {
@@ -76,8 +82,43 @@ const BibleProvider: React.FC<IBibleProviderProps> = ({ children }) => {
     }
   };
 
+  const initSavedVersicle = async () => {
+    const key = "SavedVersicles";
+    const data = (await _dbBible.getData<string[]>(key)) || [];
+
+    setSavedVersicles(
+      data.map((i) => ({
+        book: i.split(":")[0],
+        chapter: Number(i.split(":")[1]),
+        number: Number(i.split(":")[2]),
+      }))
+    );
+  };
+
+  const handleSaveVersicle = async (item: IVersicleSaveItem) => {
+    let data: string[] = [];
+    const key = "SavedVersicles";
+    const value = `${item.book}:${item.chapter}:${item.number}`;
+    const cachedData = (await _dbBible.getData<string[]>(key)) || [];
+    const existedItem = cachedData.findIndex((item) => item === value);
+
+    if (existedItem >= 0) data = cachedData.filter((item) => item !== value);
+    else data = [...cachedData, value];
+
+    await _dbBible.saveData(key, data);
+
+    setSavedVersicles(
+      data.map((i) => ({
+        book: i.split(":")[0],
+        chapter: Number(i.split(":")[1]),
+        number: Number(i.split(":")[2]),
+      }))
+    );
+  };
+
   useEffect(() => {
     getVersionData();
+    initSavedVersicle();
   }, [_bibleStore.version]);
 
   useEffect(() => {
@@ -87,8 +128,10 @@ const BibleProvider: React.FC<IBibleProviderProps> = ({ children }) => {
   const providerValue: IBibleContext = {
     data,
     selectVersion,
+    savedVersicles,
     oldTestamentData,
     newTestamentData,
+    handleSaveVersicle,
     versions: BIBLE_VERSIONS,
   };
 
