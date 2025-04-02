@@ -1,9 +1,10 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useBible } from "@/contexts/bible.context";
 import { Button } from "@/design/components/ui/button";
 import { useNavigate, useParams } from "react-router-dom";
 import Each from "@/modules/@shared/components/utils/each";
 import { ArrowLeft, Volume2, VolumeX } from "lucide-react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useTextToSpeech } from "@/hooks/text-to-speech.hook";
 import BookExtensions from "../components/book/book-extensions";
 import { IBibleItem } from "@/modules/@shared/interfaces/bible.interface";
@@ -14,6 +15,7 @@ import BookExtensionsSheetComponent from "../components/book/book-extensions/boo
 export default function BibleBookPage() {
   const params = useParams();
   const { data } = useBible();
+  const [animationParent] = useAutoAnimate();
 
   const navigate = useNavigate();
   const { isSpeaking, toggleSpeech } = useTextToSpeech();
@@ -41,7 +43,10 @@ export default function BibleBookPage() {
 
   return (
     <section className="app-container grid gap-4 grid-cols-[1fr_400px] mobile:grid-cols-1">
-      <article className="border-r pr-4 mr-4 mobile:pr-0 mobile:mr-0 mobile:border-r-0 mobile:pb-24">
+      <article
+        ref={animationParent}
+        className="border-r pr-4 mr-4 mobile:pr-0 mobile:mr-0 mobile:border-r-0 mobile:pb-24"
+      >
         <nav className="flex items-center justify-end gap-4 mb-4 sticky top-0 left-0 bg-background lg:py-4">
           <Button
             size="icon"

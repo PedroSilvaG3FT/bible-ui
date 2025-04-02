@@ -14,7 +14,10 @@ interface IProps {
 }
 export default function BookExtensions(props: IProps) {
   return (
-    <Tabs defaultValue="options" className="w-full h-full pt-4">
+    <Tabs
+      defaultValue="options"
+      className="w-full h-full py-4 overflow-y-auto invisible-scroll"
+    >
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="options">Opções</TabsTrigger>
         <TabsTrigger value="chat">Chat</TabsTrigger>

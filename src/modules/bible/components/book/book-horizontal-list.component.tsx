@@ -42,7 +42,7 @@ export default function BookHorizontalListComponent(props: IProps) {
 
       <section
         ref={scrollRef}
-        className="py-6 flex gap-6 overflow-x-auto scroll-smooth"
+        className="py-6 flex gap-6 overflow-x-auto scroll-smooth invisible-scroll"
       >
         <Each
           data={data}
