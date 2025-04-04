@@ -1,3 +1,4 @@
+import "../root.css";
 import { RouterProvider } from "react-router-dom";
 import { WrapperProvider } from "./contexts/wrapper.context";
 
