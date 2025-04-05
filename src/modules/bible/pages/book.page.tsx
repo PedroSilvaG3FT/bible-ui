@@ -34,19 +34,19 @@ export default function BibleBookPage() {
 
   useEffect(() => {
     setBookData();
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }, 250);
   }, [data, params]);
 
   return (
     <section className="app-container grid gap-4 grid-cols-[1fr_400px] mobile:grid-cols-1">
-      <article
-        ref={animationParent}
-        className="border-r pr-4 mr-4 mobile:pr-0 mobile:mr-0 mobile:border-r-0 mobile:pb-24"
-      >
+      <article className="border-r border-foreground/20 pr-4 mr-4 mobile:pr-0 mobile:mr-0 mobile:border-r-0 mobile:pb-24">
         <nav className="flex items-center justify-end gap-4 mb-4 sticky top-0 left-0 bg-background lg:py-4">
           <Button
             size="icon"
@@ -76,7 +76,9 @@ export default function BibleBookPage() {
           />
         </nav>
 
-        <h1 className="text-center">{params.chapter}</h1>
+        <h1 ref={animationParent} className="text-center">
+          {params.chapter}
+        </h1>
         <h2 className="text-center mb-16">{book.name}</h2>
 
         <Each

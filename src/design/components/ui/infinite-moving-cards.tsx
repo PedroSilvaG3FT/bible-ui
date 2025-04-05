@@ -91,7 +91,7 @@ export const InfiniteMovingCards = ({
           <Show.Else>
             {items?.map((item) => (
               <li
-                className="w-[350px] max-w-full relative rounded-2xl border bg-secondary border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
+                className="w-[350px] max-w-full relative rounded-2xl border bg-secondary border-b-0 shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
                 key={item.name}
               >
                 <blockquote>

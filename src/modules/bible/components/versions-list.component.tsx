@@ -17,7 +17,7 @@ export default function VersionsListComponent() {
               _bibleStore.version.type === item.type ? "default" : "secondary"
             }
             size="xs"
-            className="text-sm rounded-sm"
+            className="text-sm rounded-lg"
             onClick={() => selectVersion(item)}
           >
             {item.title}

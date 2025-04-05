@@ -9,7 +9,7 @@ export default function AuthenticationPageNav(
     <nav className="mb-6">
       <img
         alt="iBiblia"
-        src="/logo.svg"
+        src="/logo.png"
         className="h-8 mb-4 object-contain brightness-0"
       />
 

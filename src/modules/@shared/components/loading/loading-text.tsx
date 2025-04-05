@@ -18,7 +18,7 @@ export default function AppLoadingText(props: IProps) {
         >
           {char}
           <span
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-bg-background to-transparent opacity-30 animate-shimmer"
+            className="absolute inset-0 bg-linear-to-r from-transparent via-bg-background to-transparent opacity-30 animate-shimmer"
             style={{ backgroundSize: "200% 100%" }}
           ></span>
         </span>

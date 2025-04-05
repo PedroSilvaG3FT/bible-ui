@@ -52,7 +52,7 @@ export default function ChatMessage(props: IChatMessageProps) {
           <Show.Else>
             <article className="grid gap-2">
               <nav className="flex gap-2 mb-4 items-center">
-                <i className="h-4 w-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-500"></i>
+                <i className="h-4 w-4 rounded-full bg-linear-to-r from-pink-500 to-purple-500"></i>
                 <h6 className="text-sm text-foreground/50">Agente IA</h6>
               </nav>
 

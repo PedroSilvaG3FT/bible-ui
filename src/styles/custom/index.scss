@@ -1,26 +1,4 @@
 @import "./toast";
 @import "./scroll";
 @import "./container";
-@import "./typography";
 @import "./text-editor";
-
-.mobile-tablet-grid-cols-1 {
-  @apply mobile:grid-cols-1 tablet:grid-cols-1 #{!important};
-}
-
-.mobile-tablet-grid-cols-2 {
-  @apply mobile:grid-cols-2 tablet:grid-cols-2 #{!important};
-}
-
-.dropshadow-bg-solid-t {
-  box-shadow: 0px -40px 0px 0px hsl(var(--background));
-}
-
-.dropshadow-bg-solid-b {
-  box-shadow: 0px 40px 0px 0px hsl(var(--background));
-}
-
-.dropshadow-bg-solid-y {
-  box-shadow: 0px -40px 0px 0px hsl(var(--background)),
-    0px 10px 0px 0px hsl(var(--background));
-}

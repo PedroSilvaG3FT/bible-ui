@@ -24,11 +24,11 @@ export default function AppHeader() {
   const isHomeRoute = location.pathname === "/";
 
   return (
-    <header className="fixed z-20 w-full h-20 backdrop-blur-sm">
+    <header className="fixed z-20 w-full h-20 backdrop-blur-xs">
       <nav className="app-container h-full flex gap-4 items-center">
         <img
           alt="iBiblia"
-          src="/logo.svg"
+          src="/logo.png"
           className={`object-contain mr-auto h-6 transition-all duration-300 ${
             isHomeRoute
               ? isScrolled

@@ -37,7 +37,7 @@ export default function BookVersicleComponent(props: IProps) {
   return (
     <p
       className={cn(
-        "mb-4 transition-all duration-500 cursor-pointer hover:scale-[1.01] rounded-sm px-2 group",
+        "mb-4 transition-all duration-500 cursor-pointer hover:scale-[1.01] rounded-lg px-2 group",
         selected && "text-yellow-400"
       )}
     >

@@ -1,0 +1,102 @@
+@import "tailwindcss";
+// @config '../../tailwind.config.js';
+
+@theme {
+  /* Cores */
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  /* Tipografia */
+  --font-size-h1: 2.25rem;
+  --line-height-h1: 2.5rem;
+  --font-size-h2: 1.875rem;
+  --line-height-h2: 2.25rem;
+  --font-size-h3: 1.5rem;
+  --line-height-h3: 2rem;
+  --font-size-h4: 1.25rem;
+  --line-height-h4: 1.75rem;
+  --font-size-h5: 1.125rem;
+  --line-height-h5: 1.5rem;
+  --font-size-h6: 1rem;
+  --line-height-h6: 1.5rem;
+  --font-size-base: 1rem;
+  --line-height-base: 1.5rem;
+  --font-size-sm: 0.875rem;
+  --line-height-sm: 1.25rem;
+  --font-size-xs: 0.75rem;
+  --line-height-xs: 1rem;
+
+  /* Bordas */
+  --radius: 1rem;
+  --border-radius-lg: var(--radius);
+  --border-radius-md: calc(var(--radius) - 2px);
+  --border-radius-sm: calc(var(--radius) - 4px);
+
+  /* Breakpoints */
+  --screen-xs: 475px;
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1280px;
+  --screen-2xl: 1400px;
+
+  /* Container */
+  --container-padding: 2rem;
+}
+
+@custom-variant mobile (@media (min-width: 1px) and (max-width: 640px));
+@custom-variant tablet (@media (min-width: 641px) and (max-width: 1023px));
+@custom-variant desktop (@media (min-width: 1024px) and (max-width: 4024px));
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+  }
+
+  @media (min-width: var(--screen-sm)) {
+    .container {
+      max-width: var(--screen-sm);
+    }
+  }
+  @media (min-width: var(--screen-md)) {
+    .container {
+      max-width: var(--screen-md);
+    }
+  }
+  @media (min-width: var(--screen-lg)) {
+    .container {
+      max-width: var(--screen-lg);
+    }
+  }
+  @media (min-width: var(--screen-xl)) {
+    .container {
+      max-width: var(--screen-xl);
+    }
+  }
+  @media (min-width: var(--screen-2xl)) {
+    .container {
+      max-width: var(--screen-2xl);
+    }
+  }
+}

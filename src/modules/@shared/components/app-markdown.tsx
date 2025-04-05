@@ -49,7 +49,7 @@ export default function AppMarkdown(props: IProps) {
   return (
     <MarkdownPreview
       source={displayedText}
-      className={cn("!text-foreground")}
+      className={cn("text-foreground!")}
       style={{ background: "transparent" }}
     />
   );

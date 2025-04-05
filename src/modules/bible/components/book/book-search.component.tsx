@@ -135,7 +135,7 @@ export default function BookSearchComponent(props: IProps) {
           <CommandShortcut className="mobile:hidden">⌘ + K</CommandShortcut>
         }
         className={cn(
-          "h-12 relative z-20 rounded-sm cursor-pointer !bg-transparent",
+          "h-12 relative z-20 rounded-lg cursor-pointer bg-transparent!",
           props.inputClassName
         )}
       />
@@ -152,7 +152,7 @@ export default function BookSearchComponent(props: IProps) {
 
           <ul
             ref={listRef}
-            className="absolute z-20 left-0 right-0 mt-1 bg-background border rounded-sm shadow-lg max-h-64 overflow-y-auto"
+            className="absolute z-20 left-0 right-0 mt-1 bg-background border border-foreground/10 rounded-lg shadow-lg max-h-64 overflow-y-auto"
           >
             <Each
               data={filteredOptions}
@@ -161,7 +161,7 @@ export default function BookSearchComponent(props: IProps) {
                 <li
                   key={book.name}
                   onClick={() => handleSelect(book)}
-                  className={`p-4 flex items-center justify-between border-b cursor-pointer group hover:bg-secondary text-sm ${
+                  className={`p-4 flex items-center justify-between border-b border-foreground/10 cursor-pointer group hover:bg-secondary text-sm ${
                     highlightedIndex === index ? "bg-secondary" : ""
                   }`}
                 >

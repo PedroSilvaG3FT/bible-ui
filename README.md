@@ -1,6 +1,6 @@
 # Frontend Application Overview
 
-![Logo](https://de-challenge-ui.vercel.app/logo.svg)
+![Logo](https://de-challenge-ui.vercel.app/logo.png)
 
 ## Description
 

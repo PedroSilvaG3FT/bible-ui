@@ -10,11 +10,11 @@
   }
 
   .ql-picker-options {
-    @apply bg-background #{!important};
+    @apply bg-background;
   }
 
   .ql-toolbar {
-    @apply rounded-t-lg bg-background sticky top-0 z-10 #{!important};
+    @apply rounded-t-lg bg-background sticky top-0 z-10;
   }
 
   .ql-container {
@@ -23,7 +23,7 @@
 
   .ql-toolbar,
   .ql-container {
-    @apply border-foreground/10 #{!important};
+    @apply border-foreground/10;
   }
 
   .ql-snow.ql-toolbar button:hover,

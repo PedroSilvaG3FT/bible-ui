@@ -39,7 +39,7 @@ export default function ChatSuggestionMessageMenu(
           render={(item) => (
             <DropdownMenuItem
               onClick={() => onSelectMessage(item)}
-              className="cursor-pointer !text-sm"
+              className="cursor-pointer text-sm!"
             >
               <GripVertical className="mr-2 w-4 h-4 text-foreground/40" />
               {item}

@@ -1,0 +1,27 @@
+@layer components {
+  @media (min-width: var(--screen-sm)) {
+    .container {
+      max-width: var(--screen-sm);
+    }
+  }
+  @media (min-width: var(--screen-md)) {
+    .container {
+      max-width: var(--screen-md);
+    }
+  }
+  @media (min-width: var(--screen-lg)) {
+    .container {
+      max-width: var(--screen-lg);
+    }
+  }
+  @media (min-width: var(--screen-xl)) {
+    .container {
+      max-width: var(--screen-xl);
+    }
+  }
+  @media (min-width: var(--screen-2xl)) {
+    .container {
+      max-width: var(--screen-2xl);
+    }
+  }
+}

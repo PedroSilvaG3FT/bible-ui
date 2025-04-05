@@ -32,7 +32,7 @@ export default function BookCardComponent(props: IProps) {
         <h2
           className={cn(
             "absolute top-3 -left-full group-hover:left-3 text-8xl capitalize font-semibold transition-all duration-500",
-            "opacity-40 bg-gradient-to-b from-foreground to-transparent text-transparent bg-clip-text"
+            "opacity-40 bg-linear-to-b from-foreground to-transparent text-transparent bg-clip-text"
           )}
         >
           {data.abbrev}

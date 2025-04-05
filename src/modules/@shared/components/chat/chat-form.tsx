@@ -43,15 +43,18 @@ export default function ChatForm(props: IChatFormProps) {
   };
 
   const handleSubmit = () => {
-    onSubmit(message);
-    setMessage("");
+    console.log("comming soon");
   };
+  // const handleSubmit = () => {
+  //   onSubmit(message);
+  //   setMessage("");
+  // };
 
   return (
     <section className={cn("bg-background  w-full pt-4", className)}>
       <form
         className={cn(
-          "shadow-md  border border-foreground/05 min-h-[64px] p-2 pl-8 w-full flex items-center rounded-2xl overflow-hidden",
+          "shadow-md border border-foreground/10 p-2 pl-8 w-full flex items-center rounded-2xl overflow-hidden",
           formClassName
         )}
       >
@@ -64,7 +67,7 @@ export default function ChatForm(props: IChatFormProps) {
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           onChange={(e) => setMessage(e.target.value)}
-          className="w-full text-sm h-12 max-h-48 appearance-none outline-none bg-transparent text-foreground/60 resize-none whitespace-pre-wrap overflow-y-auto place-content-center"
+          className="w-full text-sm appearance-none outline-hidden bg-transparent text-foreground/60 resize-none whitespace-pre-wrap overflow-y-auto place-content-center"
         />
 
         <section className="flex gap-2 items-center">
@@ -78,17 +81,18 @@ export default function ChatForm(props: IChatFormProps) {
           </Show>
 
           <Button
+            size="icon"
             variant="secondary"
             onClick={handleSubmit}
             disabled={isLoading || !message.trim().length}
-            className="h-12 w-12 flex items-center justify-center transition-all duration-500 hover:scale-90"
+            className="flex items-center justify-center transition-all duration-500 hover:scale-90"
           >
             <Show>
               <Show.When condition={isLoading}>
-                <AppLoadingIndicator className="w-16" />
+                <AppLoadingIndicator className="w-6" />
               </Show.When>
               <Show.Else>
-                <Icon className="h-14 w-14" />
+                <Icon className="h-4 w-4" />
               </Show.Else>
             </Show>
           </Button>

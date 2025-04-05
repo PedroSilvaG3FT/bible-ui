@@ -7,7 +7,7 @@ export default function AppFooterComponent() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="iBiblia"
               className="mb-4 object-contain h-6 transition-all duration-300 brightness-0"
             />

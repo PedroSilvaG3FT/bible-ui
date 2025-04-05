@@ -17,7 +17,7 @@ export default function Chat(props: IChatProps) {
     >
       <ChatConversation
         data={messages}
-        className="flex-grow"
+        className="grow"
         onSelectInitialMessage={handleSend}
       />
 
