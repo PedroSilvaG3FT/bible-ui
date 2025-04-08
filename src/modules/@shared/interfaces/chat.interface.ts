@@ -7,7 +7,7 @@ export interface IChatMessage {
 
 export interface IChatSendMessageRequest {
   message: string;
-  chatConversationId: string;
+  history: IChatMessage[];
 }
 
 export interface IChatEventPayload {

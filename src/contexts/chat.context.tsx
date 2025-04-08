@@ -3,10 +3,9 @@ import {
   IChatStreamCallback,
   IChatSendMessageRequest,
 } from "@/modules/@shared/interfaces/chat.interface";
-import { ChatUtil } from "@/modules/@shared/util/chat.util";
+import { EChatRole } from "@/modules/@shared/enums/chat.enum";
 import React, { createContext, useContext, useState } from "react";
 import { ChatService } from "@/modules/@shared/services/chat.service";
-import { EChatEvent, EChatRole } from "@/modules/@shared/enums/chat.enum";
 
 interface IChatContext {
   isLoading: boolean;
@@ -85,27 +84,20 @@ const ChatProvider: React.FC<IChatProviderProps> = ({ children }) => {
 
     setIsLoading(true);
     setMessages([...newMessages]);
-    setRetryData({ message: content, chatConversationId: "" });
+    setRetryData({ message: content, history: [] });
 
     handleSendMessage(content, messagesDTO, callbacks);
   };
 
   const handleReceiveStream = (content: string) => {
-    const logs = ChatUtil.buildEvents(content);
-
-    const messageEvent = logs.find((i) => i.event === EChatEvent.END);
-    if (!messageEvent) return;
-
+    console.log(content);
     setMessages((value) => {
       const updatedMessages = [...value];
       const lastMessageIndex = updatedMessages.length - 1;
       const lastMessageData = updatedMessages[lastMessageIndex];
 
       if (lastMessageIndex >= 0 && lastMessageData.role === EChatRole.IA) {
-        updatedMessages[lastMessageIndex] = {
-          ...lastMessageData,
-          content: String(messageEvent.payload.data),
-        };
+        updatedMessages[lastMessageIndex] = { ...lastMessageData, content };
       }
 
       return updatedMessages;
@@ -118,10 +110,8 @@ const ChatProvider: React.FC<IChatProviderProps> = ({ children }) => {
     callbacks: IChatStreamCallback
   ) => {
     setMessages(messages);
-    ChatService.sendChatMessageStream(
-      { message, chatConversationId: "" },
-      callbacks
-    )
+
+    ChatService.sendChatMessageStream({ message, history: [] }, callbacks)
       .then(() => {})
       .catch(() => handleError(messages));
   };

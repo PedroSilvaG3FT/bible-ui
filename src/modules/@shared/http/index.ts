@@ -15,10 +15,6 @@ function _buildInstance<Data>(
 export const API_URL = process.env.VITE_API_URL || import.meta.env.VITE_API_URL;
 export const APP_HTTP_CLIENT = _buildInstance(API_URL);
 
-export const API_BIBLE_URL =
-  process.env.VITE_API_BIBLE_URL || import.meta.env.VITE_API_BIBLE_URL;
-export const BIBLE_HTTP_CLIENT = _buildInstance(API_BIBLE_URL);
-
 APP_HTTP_CLIENT.interceptors.request.use(
   (config) => {
     if (!config.headers["Authorization"]) {

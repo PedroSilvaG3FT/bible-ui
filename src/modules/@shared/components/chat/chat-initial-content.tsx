@@ -30,7 +30,7 @@ export default function ChatInitialContent(props: IChatInitialContentProps) {
             render={(item) => (
               <Card
                 onClick={() => onSelectMessage(item)}
-                className="pointer-events-none p-4 text-sm flex gap-2 items-center cursor-pointer transition-transform duration-500 hover:scale-[0.99]"
+                className="p-4 text-sm flex gap-2 items-center cursor-pointer transition-transform duration-500 hover:scale-[0.99]"
               >
                 <GripVertical className="w-4 h-4 text-foreground/40" />
                 {item}

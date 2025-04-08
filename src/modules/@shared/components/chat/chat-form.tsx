@@ -43,15 +43,12 @@ export default function ChatForm(props: IChatFormProps) {
   };
 
   const handleSubmit = () => {
-    console.log("comming soon");
+    onSubmit(message);
+    setMessage("");
   };
-  // const handleSubmit = () => {
-  //   onSubmit(message);
-  //   setMessage("");
-  // };
 
   return (
-    <section className={cn("bg-background  w-full pt-4", className)}>
+    <section className={cn("bg-background w-full pt-4", className)}>
       <form
         className={cn(
           "shadow-md border border-foreground/10 p-2 pl-8 w-full flex items-center rounded-2xl overflow-hidden",
@@ -66,11 +63,17 @@ export default function ChatForm(props: IChatFormProps) {
           disabled={isLoading}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
-          onChange={(e) => setMessage(e.target.value)}
-          className="w-full text-sm appearance-none outline-hidden bg-transparent text-foreground/60 resize-none whitespace-pre-wrap overflow-y-auto place-content-center"
+          onChange={(e) => {
+            setMessage(e.target.value);
+            if (textareaRef.current) {
+              textareaRef.current.style.height = "auto";
+              textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+            }
+          }}
+          className="w-full text-sm appearance-none outline-hidden bg-transparent text-foreground/60 resize-none whitespace-pre-wrap overflow-hidden min-h-[24px] max-h-[120px]"
         />
 
-        <section className="flex gap-2 items-center">
+        <section className="flex self-end gap-2 items-start pb-0.5">
           <Show>
             <Show.When condition={!isHideSuggestion}>
               <ChatSuggestionMessageMenu
@@ -98,6 +101,9 @@ export default function ChatForm(props: IChatFormProps) {
           </Button>
         </section>
       </form>
+      <p className="text-[0.65rem] mt-1.5 text-foreground/30 text-center w-full">
+        Considere verificar informações importantes.
+      </p>
     </section>
   );
 }
