@@ -19,10 +19,6 @@ export default function ChatInitialContent(props: IChatInitialContentProps) {
         Como posso te ajudar hoje?
       </h5>
 
-      <span className="self-start mb-4 bg-linear-to-t from-sky-500 to-indigo-500 px-4 rounded-md cursor-default text-sm !font-semibold">
-        Em breve
-      </span>
-
       {!isHideSuggestion && (
         <section className="grid gap-2">
           <Each

@@ -145,7 +145,7 @@ export default function BookSearchComponent(props: IProps) {
           <article
             onClick={() => setOpen(false)}
             className={cn(
-              "h-full w-full fixed top-0 left-0 z-10",
+              "h-full w-full fixed top-0 left-0 z-20",
               !props.isDisabledBackdropBlur && "backdrop-blur-md"
             )}
           ></article>

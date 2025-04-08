@@ -4,7 +4,6 @@ import { Button } from "@/design/components/ui/button";
 import { useNavigate, useParams } from "react-router-dom";
 import Each from "@/modules/@shared/components/utils/each";
 import { ArrowLeft, Volume2, VolumeX } from "lucide-react";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useTextToSpeech } from "@/hooks/text-to-speech.hook";
 import BookExtensions from "../components/book/book-extensions";
 import { IBibleItem } from "@/modules/@shared/interfaces/bible.interface";
@@ -15,7 +14,6 @@ import BookExtensionsSheetComponent from "../components/book/book-extensions/boo
 export default function BibleBookPage() {
   const params = useParams();
   const { data } = useBible();
-  const [animationParent] = useAutoAnimate();
 
   const navigate = useNavigate();
   const { isSpeaking, toggleSpeech } = useTextToSpeech();
@@ -76,9 +74,7 @@ export default function BibleBookPage() {
           />
         </nav>
 
-        <h1 ref={animationParent} className="text-center">
-          {params.chapter}
-        </h1>
+        <h1 className="text-center">{params.chapter}</h1>
         <h2 className="text-center mb-16">{book.name}</h2>
 
         <Each

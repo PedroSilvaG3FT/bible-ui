@@ -4,6 +4,7 @@ import { cn } from "@/design/lib/utils";
 import ChatMessage from "./chat-message";
 import { useEffect, useRef } from "react";
 import { useChat } from "@/contexts/chat.context";
+import { Button } from "@/design/components/ui/button";
 import ChatInitialContent from "./chat-initial-content";
 import { IChatMessage } from "../../interfaces/chat.interface";
 
@@ -15,8 +16,8 @@ interface IChatConversationProps {
 
 export default function ChatConversation(props: IChatConversationProps) {
   const { data, className, onSelectInitialMessage } = props;
+  const { isAiTyping, handleClearMessages } = useChat();
 
-  const { isAiTyping } = useChat();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -47,7 +48,7 @@ export default function ChatConversation(props: IChatConversationProps) {
     <section
       ref={scrollRef}
       className={cn(
-        "pb-[80px] invisible-scroll w-full overflow-y-auto scroll-smooth",
+        "pb-[85px] invisible-scroll w-full overflow-y-auto scroll-smooth",
         className
       )}
     >
@@ -68,6 +69,14 @@ export default function ChatConversation(props: IChatConversationProps) {
                 </article>
               )}
             />
+
+            {data.length >= 2 && !isAiTyping && (
+              <footer className="w-full flex items-center justify-end">
+                <Button size="xs" onClick={handleClearMessages}>
+                  Limpar conversa
+                </Button>
+              </footer>
+            )}
           </section>
         </Show.Else>
       </Show>
