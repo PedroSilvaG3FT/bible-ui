@@ -70,9 +70,13 @@ export default function ChatConversation(props: IChatConversationProps) {
               )}
             />
 
-            {data.length >= 2 && !isAiTyping && (
+            {data.length >= 2 && (
               <footer className="w-full flex items-center justify-end">
-                <Button size="xs" onClick={handleClearMessages}>
+                <Button
+                  size="xs"
+                  disabled={isAiTyping}
+                  onClick={handleClearMessages}
+                >
                   Limpar conversa
                 </Button>
               </footer>

@@ -62,7 +62,6 @@ const ChatProvider: React.FC<IChatProviderProps> = ({ children }) => {
   };
 
   const handleSend = (content: string) => {
-    console.log(content);
     const newMessages: IChatMessage[] = [
       ...messages,
       { content, role: EChatRole.USER },
@@ -84,13 +83,12 @@ const ChatProvider: React.FC<IChatProviderProps> = ({ children }) => {
 
     setIsLoading(true);
     setMessages([...newMessages]);
-    setRetryData({ message: content, history: [] });
+    setRetryData({ message: content, history: messages });
 
     handleSendMessage(content, messagesDTO, callbacks);
   };
 
   const handleReceiveStream = (content: string) => {
-    console.log(content);
     setMessages((value) => {
       const updatedMessages = [...value];
       const lastMessageIndex = updatedMessages.length - 1;
@@ -111,7 +109,7 @@ const ChatProvider: React.FC<IChatProviderProps> = ({ children }) => {
   ) => {
     setMessages(messages);
 
-    ChatService.sendChatMessageStream({ message, history: [] }, callbacks)
+    ChatService.sendChatMessageStream({ message, history: messages }, callbacks)
       .then(() => {})
       .catch(() => handleError(messages));
   };
